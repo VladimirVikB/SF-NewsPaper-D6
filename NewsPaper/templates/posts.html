@@ -5,6 +5,36 @@ Posts
 {% endblock title %}
 
 {% block content %}
-<h1>Все новости</h1>
-{{ posts }}
+    <h1>Все товары</h1>
+    <hr>
+    {% if posts %}
+        <table>
+            <tr>
+                <td>
+                    Заголовок
+                </td>
+                <td>
+                    Дата публикации
+                </td>
+                <td>
+                    Предпросмотр
+                </td>
+            </tr>
+        {% for post in posts %}
+            <tr>
+                <td>
+                    {{ post.post_title }}
+                </td>
+                <td>
+                    {{ post.adding_time }}
+                </td>
+                <td>
+                    {{ post.post_text|truncatewords:20 }}
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <h2>Новости будут добавлены позднее!</h2>
+    {% endif %}
 {% endblock content %}
