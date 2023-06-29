@@ -1,5 +1,5 @@
 {% extends 'flatpages/default.html' %} 
- 
+{% load custom_filters %}
 
 {% block title %}
 Статья - {{post.post_title}}
@@ -7,7 +7,7 @@
  
 
 {% block content %}
-    <h1>Текущая публикация - {{post.post_title}} </h1>
+    <h1>Текущая публикация - {{post.post_title|Censor}} </h1>
     <hr>
     {% if post %}
         <table>
@@ -24,13 +24,13 @@
             </tr>
             <tr>
                 <td>
-                    {{ post.post_title }}
+                    {{ post.post_title|Censor }}
                 </td>
                 <td>
                     {{ post.adding_time|date:'d m Y' }}
                 </td>
                 <td>
-                    {{ post.post_text}}
+                    {{ post.post_text|Censor}}
                 </td>
             </tr>
         </table>
