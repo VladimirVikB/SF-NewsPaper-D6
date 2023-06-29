@@ -5,7 +5,7 @@ Posts
 {% endblock title %}
 
 {% block content %}
-    <h1>Все товары</h1>
+    <h1>Все публикации - {{posts|length}} шт.</h1>
     <hr>
     {% if posts %}
         <table>
@@ -26,7 +26,7 @@ Posts
                     {{ post.post_title }}
                 </td>
                 <td>
-                    {{ post.adding_time }}
+                    {{ post.adding_time|date:'d m Y' }}
                 </td>
                 <td>
                     {{ post.post_text|truncatewords:20 }}

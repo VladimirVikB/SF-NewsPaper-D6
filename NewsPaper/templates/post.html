@@ -2,10 +2,39 @@
  
 
 {% block title %}
-Posts
+Статья - {{post.post_title}}
 {% endblock title %}
  
 
 {% block content %}
-<h1>{{ post }}</h1>
+    <h1>Текущая публикация - {{post.post_title}} </h1>
+    <hr>
+    {% if post %}
+        <table>
+            <tr>
+                <td>
+                    Заголовок
+                </td>
+                <td>
+                    Дата публикации
+                </td>
+                <td>
+                    Полный текст
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ post.post_title }}
+                </td>
+                <td>
+                    {{ post.adding_time|date:'d m Y' }}
+                </td>
+                <td>
+                    {{ post.post_text}}
+                </td>
+            </tr>
+        </table>
+    {% else %}
+        <h2>Новости будут добавлены позднее!</h2>
+    {% endif %}
 {% endblock content %}
