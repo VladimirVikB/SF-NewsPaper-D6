@@ -1,4 +1,6 @@
-# SF_NewsPЧто вы должны сделать в консоли Django?
+# SF_NewsP
+Что вы должны сделать в консоли Django?
+
 from newsapp.models import *
 from django.contrib.auth.models import User
 
