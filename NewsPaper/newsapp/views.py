@@ -13,4 +13,4 @@ class PostList(ListView):
 class PostDetail(DetailView):
     model = Post
     template_name = 'post.html'
-    context_object_name = 'post'  # название объекта
+    context_object_name = 'post'  # название объекта ghgfh
