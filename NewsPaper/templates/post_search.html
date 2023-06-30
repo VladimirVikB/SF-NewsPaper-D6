@@ -6,6 +6,10 @@ Posts
 {% endblock title %}
 
 {% block content %}
+<form method="GET">
+    {{ filter.form }}
+    <input type="submit" value="Найти">
+</form>
 
 <table>
     <thead>
@@ -19,7 +23,7 @@ Posts
             Предпросмотр
         </td>
     </thead>
-    {% for post in posts %}
+    {% for post in filter.qs %}
         <tr>
             <td>
                 {{ post.post_title|Censor }}
