@@ -7,5 +7,5 @@ class PostFilter(FilterSet):
         fields = {
             'post_title': ['icontains'],
             'adding_time': ['gt'],
-            'post_text': ['icontains']
+            'post_author__author_user': ['exact']
         }
