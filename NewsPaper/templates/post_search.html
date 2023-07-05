@@ -26,7 +26,7 @@ Posts
     {% for post in filter.qs %}
         <tr>
             <td>
-                {{ post.post_title|Censor }}
+                <a href="{{post.id}}"> {{ post.post_title|Censor }}</a>
             </td>
             <td>
                 {{ post.adding_time|date:'d. m. Yг.' }}

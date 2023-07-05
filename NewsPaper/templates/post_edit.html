@@ -1,4 +1,4 @@
-{% extends 'flatpages/default.html' %} 
+{% extends 'flatpages/default.html' %}
 {% load custom_filters %}
 
 {% block title %}
@@ -7,9 +7,8 @@
 
 
 {% block content %}
-    <h1>Текущая публикация - {{post.post_title|Censor}} </h1>
+    <h1>Внимание! Внимательно отредактируйте статью! </h1>
     <hr>
-    {% if post %}
         <table>
             <tr>
                 <td>
@@ -34,11 +33,11 @@
                 </td>
             </tr>
         </table>
-        <h3>
-            <a href="{{post.id}}/edit">Отредактировать статью</a>
-            <a href="{{post.id}}/delete">Удалить статью</a>
-        </h3>
-    {% else %}
-        <h2>Новости будут добавлены позднее!</h2>
-    {% endif %}
+
+<form method="POST">
+    {% csrf_token%}
+    {{form}}
+    <input type="submit" value="Сохранить">
+</form>
+
 {% endblock content %}

@@ -22,7 +22,7 @@ Posts
     {% for post in posts %}
         <tr>
             <td>
-                {{ post.post_title|Censor }}
+                <a href="{{post.id}}"> {{ post.post_title|Censor }}</a>
             </td>
             <td>
                 {{ post.adding_time|date:'d. m. Yг.' }}
@@ -33,7 +33,9 @@ Posts
         </tr>
     {% endfor %}
 </table>
-
+<h3>
+<a href='add'>Добавить статью</a>
+</h3>
 {% if is_paginated %}
 
     {% if page_obj.has_previous %}

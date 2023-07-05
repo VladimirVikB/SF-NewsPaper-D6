@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 from .models import Post
 from django.core.paginator import Paginator
 from .filters import PostFilter
+from .forms import PostForm
 
 
 class PostList(ListView):
@@ -10,6 +11,7 @@ class PostList(ListView):
     template_name = 'posts.html'
     context_object_name = 'posts'  # имя списка в котором лежат все объекты
     paginate_by = 2  #вывод по 10 новостей
+    form_class = PostForm
 
 
 class PostDetail(DetailView):
@@ -28,3 +30,22 @@ class PostSearch(ListView):
         context = super().get_context_data(**kwargs)
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         return context
+
+class PostAdd(CreateView):
+    template_name = 'post_add.html'
+    form_class = PostForm
+
+
+class PostEdit(UpdateView):
+    template_name = 'post_edit.html'
+    form_class = PostForm
+
+    def get_object(self, **kwargs):
+        id = self.kwargs.get('pk')
+        return Post.objects.get(pk=id)
+
+
+class PostDelete(DeleteView):
+    template_name = 'post_delete.html'
+    queryset = Post.objects.all()
+    success_url = '/news/'
