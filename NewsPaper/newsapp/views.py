@@ -4,6 +4,7 @@ from .models import Post
 from django.core.paginator import Paginator
 from .filters import PostFilter
 from .forms import PostForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class PostList(ListView):
@@ -36,9 +37,10 @@ class PostAdd(CreateView):
     form_class = PostForm
 
 
-class PostEdit(UpdateView):
+class PostEdit(LoginRequiredMixin, UpdateView):
     template_name = 'post_edit.html'
     form_class = PostForm
+    success_url = '/news/'
 
     def get_object(self, **kwargs):
         id = self.kwargs.get('pk')
