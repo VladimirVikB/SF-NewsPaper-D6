@@ -138,4 +138,5 @@ STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
 
-LOGIN_REDIRECT_URL = '/news/'
+LOGIN_URL = 'sign/login'
+LOGIN_REDIRECT_URL = '/'
