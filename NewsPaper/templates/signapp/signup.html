@@ -1,9 +1,18 @@
 {% extends 'flatpages/default.html' %}
 
-{% block content %}
- <h2>
-   Страница авторизованного пользователя {{request.user.username}}
- </h2>
+{% block title %}
+Регистрация
+{% endblock title %}
 
-<a class="btn btn-primary" href="sign/logout/">Выйти</a>
+{% block content %}
+<h2>
+Регистрация
+</h2>
+<form method="post">
+{% csrf_token %}
+<table>
+{{ form.as_table }}
+</table>
+<input type="submit" value="Send">
+</form>
 {% endblock content %}
