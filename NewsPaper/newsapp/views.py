@@ -4,7 +4,7 @@ from .models import Post
 from django.core.paginator import Paginator
 from .filters import PostFilter
 from .forms import PostForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
 class PostList(ListView):
@@ -32,15 +32,17 @@ class PostSearch(ListView):
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         return context
 
-class PostAdd(CreateView):
+class PostAdd(PermissionRequiredMixin, CreateView):
     template_name = 'post_add.html'
     form_class = PostForm
+    permission_required = ('newsapp.add_post')
 
 
-class PostEdit(LoginRequiredMixin, UpdateView):
+class PostEdit(PermissionRequiredMixin, UpdateView):
     template_name = 'post_edit.html'
     form_class = PostForm
     success_url = '/news/'
+    permission_required = ('newsapp.change_post')
 
     def get_object(self, **kwargs):
         id = self.kwargs.get('pk')
