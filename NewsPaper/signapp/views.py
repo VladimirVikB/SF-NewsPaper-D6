@@ -5,42 +5,22 @@ from .forms import LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group
 from django.views.generic.edit import CreateView
-from .forms import RegisterForm
+from .models import BaseRegisterForm
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
 
 # Create your views here.
 class RegisterView(CreateView):
     model = User
-    form_class = RegisterForm
-    template_name = 'signapp/signup.html'
+    form_class = BaseRegisterForm
     success_url = '/'
 
-    def form_valid(self, form):
-        user = form.save()
-        group = Group.objects.get(name='common')
-        user.groups.add(group)
-        user.save()
-        return super().form_valid(form)
 
-
-class LoginView(FormView):
-    model = User
-    form_class = LoginForm
-    template_name = 'signapp/login.html'
-    success_url = '/'
-
-    def form_valid(self, form):
-        username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password')
-        user = authenticate(self.request, username=username, password=password)
-        if user is not None:
-            login(self.request, user)
-        return super().form_valid(form)
-
-
-class LogoutView(LoginRequiredMixin, TemplateView):
-    template_name = 'signapp/logout.html'
-
-    def get(self, request, *args, **kwargs):
-        logout(request)
-        return super().get(request, *args, **kwargs)
+@login_required
+def upgrade_me(request):
+    user = request.user
+    authors_group = Group.objects.get(name='authors')
+    if not request.user.groups.filter(name='authors').exists():
+        authors_group.user_set.add(user)
+    return redirect('/')
