@@ -19,7 +19,7 @@ class IndexView(LoginRequiredMixin, TemplateView):
 @login_required
 def upgrade_me(request):
     user = request.user
-    premium_group = Group.objects.get(name='premium')
-    if not request.user.groups.filter(name='premium').exists():
-        premium_group.user_set.add(user)
+    authors_group = Group.objects.get(name='authors')
+    if not request.user.groups.filter(name='authors').exists():
+        authors_group.user_set.add(user)
     return redirect('/')
