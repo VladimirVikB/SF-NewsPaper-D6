@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os.path
 from pathlib import Path
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -160,10 +163,12 @@ ACCOUNT_FORMS = {'signup': 'sign.models.CommonSignupForm'}
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER =
-EMAIL_HOST_PASSWORD =
+EMAIL_HOST_USER =os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD =os.getenv('147bv963')
 EMAIL_USE_SSL = True
 
-SERVER_EMAIL =
+SERVER_EMAIL =os.getenv('SERVER_EMAIL')
+DEFAULT_FROM_EMAIL =os.getenv('DEFAULT_FROM_EMAIL')
 
-DEFAULT_FROM_EMAIL =
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25
