@@ -44,10 +44,14 @@ INSTALLED_APPS = [
 
     'django.contrib.sites',
     'django.contrib.flatpages',
-    'newsapp',
     'django_filters',
+
+    'newsapp',
     'signapp',
     'protectapp',
+    'appointapp',
+
+    'django_apscheduler',
 ]
 
 SITE_ID = 1
@@ -153,3 +157,13 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 ACCOUNT_FORMS = {'signup': 'sign.models.CommonSignupForm'}
+
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER =
+EMAIL_HOST_PASSWORD =
+EMAIL_USE_SSL = True
+
+SERVER_EMAIL =
+
+DEFAULT_FROM_EMAIL =
