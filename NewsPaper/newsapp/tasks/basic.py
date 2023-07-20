@@ -1,6 +1,6 @@
-from django.template.loader import render_to_string
-from django.core.mail.message import EmailMultiAlternatives
 from django.conf import settings
+from django.core.mail.message import EmailMultiAlternatives
+from django.template.loader import render_to_string
 
 
 def get_subscriber(category):

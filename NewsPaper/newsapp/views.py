@@ -1,18 +1,19 @@
-from django.shortcuts import render
+from datetime import datetime
+
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.core.mail import EmailMultiAlternatives
+from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
+from django.urls import resolve
+from django.views import View
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
-from .models import Post
-from django.core.paginator import Paginator
+
 from .filters import PostFilter
 from .forms import PostForm
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.contrib.auth.decorators import login_required
-from django.views import View
-from django.core.mail import send_mail, EmailMultiAlternatives
-from datetime import datetime
 from .models import Appointment
-from django.urls import reverse_lazy, resolve
-from django.template.loader import render_to_string
-from django.conf import settings
+from .models import Post, Category
 
 DEFAULT_FROM_EMAIL = settings.DEFAULT_FROM_EMAIL
 

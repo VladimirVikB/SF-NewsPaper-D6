@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'newsapp',
     'signapp',
     'protectapp',
-    'appointapp',
+    'appointment.apps.AppointmentConfig',
 
     'django_apscheduler',
 ]
