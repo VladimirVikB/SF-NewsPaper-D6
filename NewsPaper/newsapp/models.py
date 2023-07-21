@@ -31,7 +31,7 @@ class Category(models.Model):
         pass
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.category_art}'
 
 
 class Post(models.Model):
@@ -71,6 +71,9 @@ class Post(models.Model):
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_categories')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='post_categories')
+
+    def __str__(self):
+        return f'{self.category}'
 
 
 class Comment(models.Model):
