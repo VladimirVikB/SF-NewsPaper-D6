@@ -25,6 +25,13 @@ class Author(models.Model):
 
 class Category(models.Model):
     category_art = models.CharField(unique=True, max_length=255)
+    subscribers = models.ManyToManyField(User, blank=True)  # подписчики
+
+    def subscribe(self):
+        pass
+
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Post(models.Model):
