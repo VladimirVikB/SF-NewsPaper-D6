@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'django_filters',
 
-    'newsapp',
+    #'newsapp',
     'signapp',
     'protectapp',
     'newsapp.apps.NewsappConfig',
