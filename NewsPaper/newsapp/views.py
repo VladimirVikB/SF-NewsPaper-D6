@@ -67,7 +67,7 @@ class PostDelete(DeleteView):
 
 class PostCategoryView(ListView):
     model = Post
-    template_name = 'news_app/category.html'
+    template_name = 'newsapp/category.html'
     context_object_name = 'news'  # это имя списка, в котором будут лежать все объекты,
     # его надо указать, чтобы обратиться к самому списку объектов через HTML-шаблон
     ordering = ['-dateCreation']  # сортировка
